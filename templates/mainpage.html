@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Main Page</h1>
+        <h2>Current Account Balance: ${{ account_balance }}</h2>
+
+        <h2>Current Inventory</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price per Product</th>  <!-- Add this column -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in inventory %}
+                <tr>
+                    <td>{{ item.product_name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>${{ item.price }}</td>  <!-- Display price per product -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/purchase" class="btn btn-primary">Purchase Form</a>
+        <a href="/sale" class="btn btn-primary">Sale Form</a>
+        <a href="/balance" class="btn btn-primary">Balance Change Form</a>
+        <a href="/history" class="btn btn-primary">History</a>
+    </div>
+</body>
+</html>
